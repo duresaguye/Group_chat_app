@@ -1,4 +1,5 @@
 # Simple Chat App
+<img width="730" alt="Screenshot 2024-09-25 003905" src="https://github.com/user-attachments/assets/fc2e713f-432b-41d1-bdd9-27b72b7c575a">
 ![Uploading Screenshot 2024-09-25 003905.png…]()
 
 
