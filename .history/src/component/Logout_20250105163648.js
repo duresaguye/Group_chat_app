@@ -11,9 +11,6 @@
     };
 
     const buttonStyle = {
-      position: 'absolute',
-      top: '10px',
-      right: '10px',
       padding: '10px 20px',
       backgroundColor: '#4285F4',
       color: 'white',

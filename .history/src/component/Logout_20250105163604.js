@@ -14,17 +14,17 @@
       position: 'absolute',
       top: '10px',
       right: '10px',
-      padding: '10px 20px',
       backgroundColor: '#4285F4',
       color: 'white',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      fontSize: '16px'
     };
-  
+    const containerStyle = {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh'
+    };
     return (
-      <div>
+      <div >
         <button style={buttonStyle} onClick={handleLogout}>Logout</button>
       </div>
     );

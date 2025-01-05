@@ -63,12 +63,11 @@ export default Chat;
 const styles = {
   chatContainer: {
     backgroundColor: '#121212', // Dark background
-    padding: '20px',
+    padding: '50px',
     borderRadius: '8px',
-    width: '500px',
+    width: '400px',
     margin: 'auto',
-    marginTop: '400px',
-    color: '#FFFFFF', 
+    color: '#FFFFFF', // White text for better contrast
     fontFamily: 'Arial, sans-serif',
   },
   messagesContainer: {

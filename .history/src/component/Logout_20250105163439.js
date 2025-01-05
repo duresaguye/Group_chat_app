@@ -14,15 +14,8 @@
       position: 'absolute',
       top: '10px',
       right: '10px',
-      padding: '10px 20px',
-      backgroundColor: '#4285F4',
-      color: 'white',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      fontSize: '16px'
     };
-  
+
     return (
       <div>
         <button style={buttonStyle} onClick={handleLogout}>Logout</button>

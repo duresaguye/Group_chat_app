@@ -1,7 +1,7 @@
 "use client";
 
 import { signInWithPopup, auth, provider } from '../../lib/firebase';
-import { useRouter } from 'next/navigation';  
+import { useRouter } from 'next/router';  // For navigation
 
 const Login = () => {
   const router = useRouter();

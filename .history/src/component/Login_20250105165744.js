@@ -1,7 +1,7 @@
 "use client";
 
 import { signInWithPopup, auth, provider } from '../../lib/firebase';
-import { useRouter } from 'next/navigation';  
+import { useRouter } from 'next/router';  // For navigation
 
 const Login = () => {
   const router = useRouter();
@@ -9,7 +9,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       await signInWithPopup(auth, provider);
-      router.push('/'); 
+      router.push('/');  // Redirect to home page after login
     } catch (error) {
       console.error('Error logging in: ', error);
     }

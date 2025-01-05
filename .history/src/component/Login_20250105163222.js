@@ -1,15 +1,10 @@
-"use client";
-
+// components/Login.js
 import { signInWithPopup, auth, provider } from '../../lib/firebase';
-import { useRouter } from 'next/navigation';  
 
 const Login = () => {
-  const router = useRouter();
-
   const handleLogin = async () => {
     try {
       await signInWithPopup(auth, provider);
-      router.push('/'); 
     } catch (error) {
       console.error('Error logging in: ', error);
     }

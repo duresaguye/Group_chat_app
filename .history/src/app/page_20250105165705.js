@@ -2,7 +2,7 @@
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../lib/firebase';
-import { useRouter } from 'next/navigation';  
+import { useRouter } from 'next/router';  // For navigation
 import Login from '../component/Login';
 import Logout from '../component/Logout';
 import Chat from '../component/Chat';
@@ -29,7 +29,7 @@ const Home = () => {
       {user ? (
         <div>
           <Logout />
-          <div className="text-center mt-48">
+          <div className="text-center mt-6">
             <h1 className="text-3xl text-blue-500">Welcome to the Group Chat, {user.displayName}!</h1>
             <p className="text-gray-300 mt-4">We're excited to have you here.</p>
             <button

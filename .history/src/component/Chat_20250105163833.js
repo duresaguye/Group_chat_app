@@ -65,10 +65,10 @@ const styles = {
     backgroundColor: '#121212', // Dark background
     padding: '20px',
     borderRadius: '8px',
-    width: '500px',
+    width: '400px',
     margin: 'auto',
-    marginTop: '400px',
-    color: '#FFFFFF', 
+    marginTop: '50px',
+    color: '#FFFFFF', // White text for better contrast
     fontFamily: 'Arial, sans-serif',
   },
   messagesContainer: {

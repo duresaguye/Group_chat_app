@@ -65,9 +65,9 @@ const styles = {
     backgroundColor: '#121212', // Dark background
     padding: '20px',
     borderRadius: '8px',
-    width: '500px',
+    width: '400px',
     margin: 'auto',
-    marginTop: '400px',
+    marginTop: '50px',
     color: '#FFFFFF', 
     fontFamily: 'Arial, sans-serif',
   },

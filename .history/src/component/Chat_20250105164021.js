@@ -67,7 +67,7 @@ const styles = {
     borderRadius: '8px',
     width: '500px',
     margin: 'auto',
-    marginTop: '400px',
+    marginTop: '100px',
     color: '#FFFFFF', 
     fontFamily: 'Arial, sans-serif',
   },
