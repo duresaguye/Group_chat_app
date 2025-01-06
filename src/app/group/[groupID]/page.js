@@ -109,7 +109,7 @@ const GroupChat = ({ params }) => {
     return <div className="text-center mt-10">Group not found.</div>;
   }
 
-  const shareLink = `http://localhost:3000/group/${groupID}`; // Update for your deployment
+  const shareLink = `https://group-chatt.vercel.app/group/${groupID}`;
 
   return (
     <div className="bg-gray-900 text-white p-6 rounded-lg max-w-3xl mx-auto mt-10 shadow-lg">
