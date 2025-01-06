@@ -1,18 +1,17 @@
 "use client";
 
 import { signInWithPopup, auth, provider } from '../../lib/firebase';
-import { useRouter } from 'next/navigation';  
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Login = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirectUrl = searchParams.get('redirect') || '/';
+  const searchParams = typeof window !== 'undefined' ? useSearchParams() : null;
+  const redirectUrl = searchParams?.get('redirect') || '/';
 
   const handleLogin = async () => {
     try {
       await signInWithPopup(auth, provider);
-      router.push(redirectUrl); 
+      router.push(redirectUrl);
     } catch (error) {
       console.error('Error logging in: ', error);
     }

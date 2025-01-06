@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../lib/firebase';
 import { collection, addDoc, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
-import { useRouter } from 'next/navigation'; // Assuming you are using Next.js for routing
+import { useRouter } from 'next/navigation'; 
 
 // Helper function to generate a unique color for each user
 const generateColor = (uid) => {
@@ -15,7 +15,7 @@ const generateColor = (uid) => {
 const Chat = ({ user, onLogout }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const router = useRouter(); // Use the Next.js router for navigation
+  const router = useRouter(); 
 
   useEffect(() => {
     const q = query(collection(db, 'messages'), orderBy('timestamp', 'desc'), limit(50));
