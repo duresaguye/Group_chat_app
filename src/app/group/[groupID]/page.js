@@ -5,6 +5,7 @@ import { doc, getDoc, collection, query, orderBy, onSnapshot, addDoc, serverTime
 import { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import Logout from '@/component/Logout';
+import { FaSpinner } from 'react-icons/fa';
 
 const GroupChat = ({ params }) => {
   const { groupID } = params;
@@ -95,6 +96,13 @@ const GroupChat = ({ params }) => {
 
   if (loading) {
     return <div className="text-center mt-10">Loading group chat...</div>;
+  }
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <FaSpinner className="animate-spin text-4xl text-blue-500" />
+      </div>
+    );
   }
 
   if (!groupData) {
