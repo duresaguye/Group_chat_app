@@ -10,24 +10,17 @@
       }
     };
 
-    const buttonStyle = {
-      position: 'absolute',
-      top: '10px',
-      right: '10px',
-      padding: '10px 20px',
-      backgroundColor: '#4285F4',
-      color: 'white',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      fontSize: '16px'
-    };
+    
   
     return (
-      <div>
-        <button style={buttonStyle} onClick={handleLogout}>Logout</button>
+      <div className="flex justify-end">
+        <button 
+          onClick={handleLogout} 
+          className="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Logout
+        </button>
       </div>
-    );
+        );
   };
 
   export default Logout;

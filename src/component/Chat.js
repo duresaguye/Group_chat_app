@@ -3,10 +3,19 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../lib/firebase';
 import { collection, addDoc, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
+import { useRouter } from 'next/navigation'; // Assuming you are using Next.js for routing
 
-const Chat = ({ user }) => {
+// Helper function to generate a unique color for each user
+const generateColor = (uid) => {
+  const hash = uid.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const hue = hash % 360; // Generate a hue value between 0 and 360
+  return `hsl(${hue}, 70%, 50%)`; // Convert it to an HSL color for variety
+};
+
+const Chat = ({ user, onLogout }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const router = useRouter(); // Use the Next.js router for navigation
 
   useEffect(() => {
     const q = query(collection(db, 'messages'), orderBy('timestamp', 'desc'), limit(50));
@@ -33,89 +42,52 @@ const Chat = ({ user }) => {
     setMessage('');
   };
 
+  const handleLogout = () => {
+    onLogout(); // Call the logout function passed from parent
+    router.push('/'); // Navigate back to home
+  };
+
   return (
-    <div style={styles.chatContainer}>
-      <div style={styles.messagesContainer}>
-        {messages.map(msg => (
-          <div key={msg.id} style={styles.messageBubble}>
-            <strong style={styles.username}>{msg.displayName}:</strong> 
-            <span style={styles.messageText}> {msg.text}</span>
-          </div>
-        ))}
+    <div className="bg-gray-900 text-white p-6 rounded-lg max-w-3xl mx-auto mt-10 shadow-lg">
+      <div className="flex justify-between items-center mb-4">
+        <button 
+          onClick={() => router.push('/')} 
+          className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Back to Home
+        </button>
+        <button 
+          onClick={handleLogout} 
+          className="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Logout
+        </button>
       </div>
-      <div style={styles.inputContainer}>
+
+      <div className="h-64 overflow-y-scroll bg-gray-800 p-4 rounded mb-4">
+        {messages.map((msg) => {
+          const userColor = generateColor(msg.uid); // Generate a color for each user
+          return (
+            <div key={msg.id} className="mb-2">
+              <strong style={{ color: userColor }} className="font-semibold">{msg.displayName}:</strong>
+              <span>{msg.text}</span>
+            </div>
+          );
+        })}
+      </div>
+      
+      <div className="flex items-center">
         <input
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message..."
-          style={styles.inputField}
+          className="flex-1 p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring focus:ring-blue-500"
         />
-        <button onClick={sendMessage} style={styles.sendButton}>Send</button>
+        <button onClick={sendMessage} className="ml-2 bg-teal-400 hover:bg-teal-300 text-gray-900 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Send
+        </button>
       </div>
     </div>
   );
 };
 
 export default Chat;
-
-// Styling
-const styles = {
-  chatContainer: {
-    backgroundColor: '#121212', // Dark background
-    padding: '20px',
-    borderRadius: '8px',
-    width: '500px',
-    margin: 'auto',
-    marginTop: '400px',
-    color: '#FFFFFF', 
-    fontFamily: 'Arial, sans-serif',
-  },
-  messagesContainer: {
-    height: '300px',
-    overflowY: 'scroll',
-    marginBottom: '15px',
-    padding: '10px',
-    backgroundColor: '#1E1E1E', // Slightly lighter dark background for messages area
-    borderRadius: '8px',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)', // Shadow for depth effect
-  },
-  messageBubble: {
-    backgroundColor: '#333333',
-    padding: '8px 12px',
-    borderRadius: '8px',
-    margin: '5px 0',
-    color: '#e1e1e1', // Light gray text
-  },
-  username: {
-    fontWeight: 'bold',
-    color: '#BB86FC', // Accent color for usernames
-  },
-  messageText: {
-    marginLeft: '5px',
-  },
-  inputContainer: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  inputField: {
-    flex: 1,
-    padding: '10px',
-    borderRadius: '5px',
-    border: '1px solid #555555',
-    backgroundColor: '#2E2E2E',
-    color: '#FFFFFF', // Input text color
-    marginRight: '10px',
-    fontSize: '16px',
-  },
-  sendButton: {
-    backgroundColor: '#03DAC6', // Teal accent color
-    color: '#121212', // Dark button text for contrast
-    border: 'none',
-    padding: '10px 15px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-    fontSize: '16px',
-    fontWeight: 'bold',
-  },
-};
