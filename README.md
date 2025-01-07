@@ -12,7 +12,7 @@ Here are some screenshots of the Simple Chat App:
 ![Chat Screen](./images/image2.png)
 
 ### Chat screen
-![Mobile View](./images/image3.png)
+![Mobile View](./images/image1.png)
 
 
 A simple real-time chat application built with **Next.js** and **Firebase**. This application allows users to communicate seamlessly, leveraging Firebase for authentication and data storage.
