@@ -3,7 +3,7 @@
 
 ## Screenshots
 
-Here are some screenshots of the Simple Chat App:
+Here are some screenshots of the Group Chat App:
 
 ### Login Screen
 ![Login Screen](./images/image3.png)
