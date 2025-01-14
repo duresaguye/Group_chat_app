@@ -3,19 +3,13 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../lib/firebase';
 import { collection, addDoc, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
-import { useRouter } from 'next/navigation'; 
-
-// Helper function to generate a unique color for each user
-const generateColor = (uid) => {
-  const hash = uid.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const hue = hash % 360; // Generate a hue value between 0 and 360
-  return `hsl(${hue}, 70%, 50%)`; // Convert it to an HSL color for variety
-};
+import { useRouter } from 'next/navigation';  
+import { useSearchParams } from 'next/navigation';
 
 const Chat = ({ user, onLogout }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const router = useRouter(); 
+  const router = useRouter();
 
   useEffect(() => {
     const q = query(collection(db, 'messages'), orderBy('timestamp', 'desc'), limit(50));
@@ -31,6 +25,11 @@ const Chat = ({ user, onLogout }) => {
 
   const sendMessage = async () => {
     if (message.trim() === '') return;
+
+    if (!user) {
+      console.error('User is not defined');
+      return;
+    }
 
     await addDoc(collection(db, 'messages'), {
       text: message,
@@ -63,15 +62,12 @@ const Chat = ({ user, onLogout }) => {
       </div>
 
       <div className="h-64 overflow-y-scroll bg-gray-800 p-4 rounded mb-4">
-        {messages.map((msg) => {
-          const userColor = generateColor(msg.uid); // Generate a color for each user
-          return (
-            <div key={msg.id} className="mb-2">
-              <strong style={{ color: userColor }} className="font-semibold">{msg.displayName}:</strong>
-              <span>{msg.text}</span>
-            </div>
-          );
-        })}
+        {messages.map((msg) => (
+          <div key={msg.id} className="mb-2">
+            <strong className="font-semibold">{msg.displayName}:</strong>
+            <span>{msg.text}</span>
+          </div>
+        ))}
       </div>
       
       <div className="flex items-center">
