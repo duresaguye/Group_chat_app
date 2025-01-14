@@ -15,7 +15,7 @@ Here are some screenshots of the Group Chat App:
 ![Mobile View](./images/image1.png)
 
 
-A simple real-time chat application built with **Next.js** and **Firebase**. This application allows users to communicate seamlessly, leveraging Firebase for authentication and data storage.
+A simple real-time Group chat application built with **Next.js** and **Firebase**. This application allows users to communicate seamlessly, leveraging Firebase for authentication and data storage.
 
 ## Features
 
